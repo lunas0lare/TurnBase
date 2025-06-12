@@ -3,7 +3,6 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 public class TurnBase{
-   final int HP = 100;
 
    public static void main(String[] args){
     Random rand = new Random();
@@ -14,10 +13,11 @@ public class TurnBase{
     Computer computer = new Computer();
     computer.setHP(100);
 
-    Move swing = new Swing();               // damage=10, healing=0
-    Move heavySwing = new heavySwing();     // damage=15, healing=0
-    Move healingPotion = new HealngPotion(); // damage=0, healing=10
-
+    Move swing = new Swing();               // damage=10, healing=0; stamina = 5
+    Move heavySwing = new heavySwing();     // damage=15, healing=0; stamina = 10
+    Move healingPotion = new HealngPotion(); // damage=0, healing=10; stamina = 0
+    Move staminaPotion = new StaminaPotion(); // damage=0; healing=0; stamina heals=15
+    
     Boolean continue_playing = true;
 
     while(continue_playing == true){
@@ -28,6 +28,7 @@ public class TurnBase{
         System.out.println("1. Swing: deals 10 damage");
         System.out.println("2. Heavy Swing: deals 15 damage");
         System.out.println("3. Health Potion: restore 15 health");
+        System.out.println("4. Stamina Potion: restore 15 stamina");
         int option;
         while (true) {
         try {
@@ -82,8 +83,11 @@ public class TurnBase{
       
         System.out.println("computer's HP: " + computer.getHP());
         
+        System.out.println("computer's Stamina: " + computer.getStamina());
+
         System.out.println("Player's HP: " + John.getHP());
        
+        System.out.println("Player's Stamina: " + John.getStamina());
         if(computer.getHP() <= 0 || John.getHP() <= 0){
             in.nextLine();//remove the space when input a string
             int johnHP = John.getHP();
